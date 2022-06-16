@@ -56,6 +56,7 @@ function readUserData() {
 
 			$li.setAttribute("user-key", key);
 			$li.addEventListener("click", userClicked);
+            $li.append(editIconUI);
             
 			userListUI.append($li);
 
@@ -110,6 +111,27 @@ function userClicked(e) {
 function editButtonClicked(e)
 {
     document.getElementById("edit-user-module").style.display="block";
-    document.querySelector("edit-userid").value=e.target.getAttribute("userid");
-    
+    document.querySelector(".edit-userid").value=e.target.getAttribute("userid");
+    let userID=e.target.getAttribute("userid");
+    const userRef = dbRef.child('users/' + userID);
+    const editUserInputsUI = document.querySelectorAll(".edit-user-input");
+userRef.on("value",
+snap=>
+{
+    for (let i = 0, len = editUserInputsUI.length; i < len; i++)
+    {        
+        let key = editUserInputsUI[i].getAttribute('data-key');
+        editUserInputsUI[i].value=snap.val()[key];
+
+
+    }
+    const saveBtn =document.querySelector("edit-user-btn");
+    saveBtn.addEventListener("click",saveUserbtnClicked)
+}
+
+)
+}
+function saveUserbtnClicked(e)
+{
+
 }
