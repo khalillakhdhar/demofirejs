@@ -15,6 +15,7 @@ var config = {
 
 
 firebase.initializeApp(config);
+const addUserBtnUi=document.getElementById("add-user-btn");
 
 // Firebase Database Reference and the child
 const dbRef = firebase.database().ref();
@@ -41,6 +42,13 @@ function readUserData() {
 				value = childSnap.val()
   			
 			let $li = document.createElement("li");
+            let editIconUI = document.createElement("span");
+            editIconUI.class = "edit-user";
+            editIconUI.innerHTML = " ✎";
+            editIconUI.setAttribute("userid", key);
+            //editIconUI.addEventListener("click", editButtonClicked) // Append after
+            li.innerHTML = value.name
+            $li.append(editIconUI);
             console.log(key);
 			$li.innerHTML = value.name;
 
@@ -79,6 +87,24 @@ function userClicked(e) {
 
 
 }
-const addUserBtnUi=document.getElementById("add-user-btn");
- addUserBtnUI.addEventListener("click", addUserBtnClicked);
+//-------- ADD User ---------------
+ addUserBtnUi.addEventListener("click", addUserBtnClicked);
 
+ function addUserBtnClicked()
+ {
+    const addUserInputsUI = document.getElementsByClassName("user-input");
+    // objet de nouveau user
+    let newUser={};
+    for (let i = 0, len = addUserInputsUI.length; i < len; i++) {
+        let key = addUserInputsUI[i].getAttribute('data-key');
+        let value = addUserInputsUI[i].value;
+        newUser[key] = value;
+        }
+        usersRef.push(newUser);
+        alert("ajouté avec succés")
+ }
+
+function editButtonClicked(e)
+{
+    document.getElementById().style.display="block";
+}
