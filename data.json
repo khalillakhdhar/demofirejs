@@ -1,0 +1,11 @@
+{
+    "users": [{
+    "name": "khalil lakhdhar",
+    "age": 32,
+    "email": "khalil@email.com"
+    }, {
+    "name": "Mohammed Ahmed",
+    "age": 21,
+    "email": "mohamed@email.com"
+    }]
+    }
