@@ -38,22 +38,25 @@ function readUserData() {
 
 		snap.forEach(childSnap => {
 
-			let key = childSnap.key,
-				value = childSnap.val()
-  			
-			let $li = document.createElement("li");
-            let editIconUI = document.createElement("span");
-            editIconUI.class = "edit-user";
-            editIconUI.innerHTML = " ✎";
-            editIconUI.setAttribute("userid", key);
-            //editIconUI.addEventListener("click", editButtonClicked) // Append after
-            li.innerHTML = value.name
+            let key = childSnap.key,
+            value = childSnap.val()
+          
+        let $li = document.createElement("li");
+
+        // edit icon
+        let editIconUI = document.createElement("span");
+        editIconUI.class = "edit-user";
+        editIconUI.innerHTML = " ✎";
+        editIconUI.setAttribute("userid", key);
+        editIconUI.addEventListener("click", editButtonClicked);
+            $li.innerHTML = value.name
             $li.append(editIconUI);
             console.log(key);
 			$li.innerHTML = value.name;
 
 			$li.setAttribute("user-key", key);
-			$li.addEventListener("click", userClicked)
+			$li.addEventListener("click", userClicked);
+            
 			userListUI.append($li);
 
  		});
@@ -106,5 +109,7 @@ function userClicked(e) {
 
 function editButtonClicked(e)
 {
-    document.getElementById().style.display="block";
+    document.getElementById("edit-user-module").style.display="block";
+    document.querySelector("edit-userid").value=e.target.getAttribute("userid");
+    
 }
