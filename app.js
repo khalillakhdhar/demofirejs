@@ -45,12 +45,37 @@ function readUserData() {
 			$li.innerHTML = value.name;
 
 			$li.setAttribute("user-key", key);
-			//$li.addEventListener("click", userClicked)
+			$li.addEventListener("click", userClicked)
 			userListUI.append($li);
 
  		});
 
 
 	})
+
+}
+
+
+
+function userClicked(e) {
+
+
+		var userID = e.target.getAttribute("user-key");
+
+		const userRef = dbRef.child('users/' + userID);
+		const userDetailUI = document.getElementById("user-detail");
+
+		userRef.on("value", snap => {
+
+			userDetailUI.innerHTML = ""
+
+			snap.forEach(childSnap => {
+				var $p = document.createElement("p");
+				$p.innerHTML = childSnap.key  + " - " +  childSnap.val();
+				userDetailUI.append($p);
+			})
+
+		});
+	
 
 }
