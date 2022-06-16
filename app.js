@@ -41,7 +41,7 @@ function readUserData() {
 				value = childSnap.val()
   			
 			let $li = document.createElement("li");
-
+            console.log(key);
 			$li.innerHTML = value.name;
 
 			$li.setAttribute("user-key", key);
@@ -61,7 +61,7 @@ function userClicked(e) {
 
 
 		var userID = e.target.getAttribute("user-key");
-
+        console.log("selectedkey",userID);
 		const userRef = dbRef.child('users/' + userID);
 		const userDetailUI = document.getElementById("user-detail");
 
@@ -76,6 +76,6 @@ function userClicked(e) {
 			})
 
 		});
-	
+
 
 }
