@@ -125,13 +125,27 @@ snap=>
 
 
     }
-    const saveBtn =document.querySelector("edit-user-btn");
-    saveBtn.addEventListener("click",saveUserbtnClicked)
+  
 }
 
 )
+const saveBtn =document.querySelector("#edit-user-btn");
+saveBtn.addEventListener("click",saveUserbtnClicked);
 }
 function saveUserbtnClicked(e)
 {
+const userID=document.querySelector(".edit-userid").value;
+const userRef=dbRef.child('users/'+userID);
+var editedUserObject = {}
+const editUserInputsUI = document.querySelectorAll(".edit-user-input");
+editUserInputsUI.forEach(function(textFeild)
+{
+let key=textFeild.getAttribute("data-key");
+let value=textFeild.value;
+editedUserObject[key]=value;
+
+});
+userRef.update(editedUserObject);
+document.getElementById("edit-user-module").style.display="none";
 
 }
