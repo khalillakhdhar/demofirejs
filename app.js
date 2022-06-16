@@ -79,3 +79,6 @@ function userClicked(e) {
 
 
 }
+const addUserBtnUi=document.getElementById("add-user-btn");
+ addUserBtnUI.addEventListener("click", addUserBtnClicked);
+
